@@ -7,20 +7,23 @@
     <title>Progress Bar</title>
     <link rel="stylesheet" href="styles.css">
 </head>
-<body onload="makeProgress()">
+<body onload="makeProgress(5)">
     <div class="container">
         <div class="bar"></div>
     </div>
     <script>
-        const makeProgress = () => {
+        const makeProgress = (seconds) => {
             var progressBar = document.querySelector(".bar")
-            var progress = 1;
+            var progress = 0;
                 (function increaseBar(){
                     setTimeout(addProgress = () => {
                         progressBar.style.maxWidth = `${progress}%`;
-                        progress++
-                        increaseBar()
-                    },100)
+                        if(progress < 100) {
+                            progress++
+                            increaseBar()
+                        } 
+                        
+                    },(seconds * 1000) / 100)
                 })()
             }
     
